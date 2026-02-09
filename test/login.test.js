@@ -23,8 +23,7 @@ describe('POST /login', () => {
   });
 
   it('debería manejar errores si el servicio falla', async () => {
-
-    axios.get.mockRejectedValue(new Error('API caída')); //
+    axios.get.mockRejectedValue(new Error('API caída'));
     const response = await request(app).get('/users');
     expect(response.statusCode).toBe(500);
     expect(response.body).toEqual({ error: 'Time out' });
