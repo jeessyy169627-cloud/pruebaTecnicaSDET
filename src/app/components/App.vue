@@ -3,36 +3,7 @@
         <nav class="navbar navbar-light bg-light">
     <a href="/" class="navbar-brand"> Reporte Pruebas SDET</a>
    </nav>
-
-   
-    <!-- <div class="container">
-            <div class="row pt-5">
-                <div class="col-md-5">
-                    <div class="card">
-                        <div class="card-body">
-                         <form @submit.prevent="addTask">
-                            <div class="form-group">
-                                <input type="text" v-model="task.title" 
-                                placeholder="insert a task"
-                                class="form-control">   
-                            </div>
-                                <div class="form-group">
-                                    <textarea 
-                                    v-model="task.description"
-                                    cols="30" rows="10" 
-                                    class="form-control"
-                                    placeholder="Insert a description"></textarea>
-                                </div>
-                                <button class="btn btn-primary
-                                btn-block">Send</button>
-                        </form>
-    </div>
-    </div>
-    </div>
-    
-    </div>
-    </div>
-   -->    
+  
     <div class="col-md-7">
         <table class="table table-bordered">
             <thead>
@@ -43,9 +14,32 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ tasks.title }}</td>
-                    <td>{{ tasks.description }}</td>
-
+                    <td> PassedTestSuites </td>
+                    <td>{{ tasks.numPassedTestSuites}}</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td> PassedTestSuites </td>
+                     <td>{{ tasks.numPendingTestSuites}}</td>                    
+                </tr>
+            </tbody>
+             <tbody>
+                <tr>
+                    <td> ErrorTestSuites </td>
+                     <td>{{ tasks.numRuntimeErrorTestSuites}}</td>                
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td> TotalTestSuites </td>
+                     <td>{{ tasks.numTotalTestSuites}}</td>               
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td> TotalTests </td>
+                     <td>{{ tasks.numTotalTests}}</td>              
                 </tr>
             </tbody>
         </table>
@@ -92,7 +86,7 @@ export default {
             this.task = new Task();           
         },
         getTasks(){
-            fetch('/api/tasks')
+            fetch('/results')
             .then(res => res.json())
             .then(data => {
                 this.tasks = data ;
