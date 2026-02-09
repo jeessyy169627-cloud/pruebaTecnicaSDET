@@ -1,0 +1,11 @@
+{
+  "reporters": [
+    "default",
+    ["./node_modules/jest-html-reporter", {
+      "pageTitle": "Informe de Pruebas",
+      "outputPath": "test-report.html",
+      "includeFailureMsg": true,
+      "includeConsoleLog": true
+    }]
+  ]
+}
