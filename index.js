@@ -12,23 +12,7 @@ app.use(express.json());
 //Static files
 app.use(express.static(__dirname + '/src/public'));
 
-
-
-app.get('/', (req, res)=> {
-res.send('Hola Mundo');
-});
-
-app.get('/Productos', (req, res) => {
-    res.json({
-        name:'Oscar',
-        lastName: 'Espinoza',
-        age: '20',
-        address: 'New York 36',
-    })
-})
-
-
-app.get('/Productos/:id', (req, res) => {
+app.get('/users/name', (req, res) => {
     const id = req.params.id
     res.json({
         "name":'Oscar',
@@ -39,28 +23,9 @@ app.get('/Productos/:id', (req, res) => {
     })
 })
 
-app.get('/Products/fake', (req, res) =>{
-    const products = [];
-    const {size} = req.query;
-    const limit = size || 5;
-  for ( let i = 0; i < limit; i++) {
-        products.push({
-            "id": faker.datatype.uuid(),
-            "name": faker.commerce.productName(),
-            "price": faker.commerce.price(),
-            "description": faker.commerce.productDescription()
-        })
-    }
-    res.json(products);
-})
-
-app.use('/api/tasks', require('./src/routes/tasks'));
-
-
 app.listen(app.get('port'),(req, res) => {   
     console.log(`Escuchando en el puerto: http://localhost:${app.get('port')}`)
 })
-
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
@@ -71,7 +36,6 @@ app.post('/login', (req, res) => {
 
 });
 
-
 app.get('/users', async (req, res) => {
   try {
     const users = await userService.getUsers();
@@ -79,6 +43,10 @@ app.get('/users', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Time out' });
   }
+});
+
+app.get('/results', (req, res) => {
+    res.sendFile(__dirname + '/results.json');
 });
 
 module.exports = app;
