@@ -23,7 +23,7 @@ describe('POST /login', () => {
   });
 
   it('debería manejar errores si el servicio falla', async () => {
-    // Simula un error en la llamada a axios.get
+
     axios.get.mockRejectedValue(new Error('API caída')); //
     const response = await request(app).get('/users');
     expect(response.statusCode).toBe(500);
